@@ -6,10 +6,11 @@ def main():
     #         words += 1
     
     book = "books/frankenstein.txt"
-    words = word_count(read_book(book))
-    letter_dict = char_count(read_book(book))
-    print(f"{book} contains {words} words")
-    print(f"{book} has the following letter counts: \n {letter_dict}")
+    print_book_report(book=book)
+    # words = word_count(read_book(book))
+    # letter_dict = char_count(read_book(book))
+    
+    # print(f"{book} has the following letter counts: \n {letter_dict}")
 
 def read_book(path):
    
@@ -28,10 +29,24 @@ def word_count(text):
 def char_count(text):
     lower_text = text.lower()
     letters = "qwertyuiopasdfghjklzxcvbnm"
+    letters = ''.join(sorted(letters))
     # letters = str(sorted(letters))
     letter_dict = {}
     for letter in letters:
         letter_dict[letter] = lower_text.count(letter)
     
     return letter_dict
+
+def print_char_dict(letter_dict):
+    for letter in letter_dict:
+        print(f"The '{letter}' character was found {letter_dict[letter]} times")
+    return
+
+def print_book_report(book):
+    words = word_count(read_book(book))
+    letter_dict = char_count(read_book(book))
+    print(f"{book} contains {words} words")
+    print_char_dict(letter_dict)
+    return
+
 main()
